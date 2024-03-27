@@ -88,7 +88,16 @@ export const VectorStorePopUp = ({ chatflowid }) => {
     return (
         <>
             <StyledFab
-                sx={{ position: 'absolute', right: 80, top: 20 }}
+                sx={{
+                    position: 'absolute',
+                    right: 80,
+                    top: 20,
+                    // backgroundColor: '#2CD552',
+                    background: 'linear-gradient(to bottom right, #e084b4 0%, #77bfaf 100%)',
+                    '&:hover': {
+                        background: 'linear-gradient(to bottom right, #e084b4 0%, #77bfaf 100%)'
+                    }
+                }}
                 ref={anchorRef}
                 size='small'
                 color='teal'

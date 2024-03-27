@@ -525,7 +525,14 @@ query(formData).then((response) => {
                                         {loading && <BackdropLoader open={loading} />}
                                         {!loading && (
                                             <Button
-                                                sx={{ color: 'white' }}
+                                                sx={{
+                                                    color: 'white',
+                                                    // backgroundColor: '#2CD552',
+                                                    background: 'linear-gradient(to bottom right, #e084b4 0%, #77bfaf 100%)'
+                                                    // '&:hover': {
+                                                    //     backgroundColor: '#77bfaf'
+                                                    // }
+                                                }}
                                                 fullWidth
                                                 variant='contained'
                                                 color='teal'

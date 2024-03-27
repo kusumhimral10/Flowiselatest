@@ -28,7 +28,7 @@ import Transitions from 'ui-component/extended/Transitions'
 import AboutDialog from 'ui-component/dialog/AboutDialog'
 
 // assets
-import { IconLogout, IconSettings, IconInfoCircle } from '@tabler/icons'
+import { IconLogin, IconLogout, IconSettings } from '@tabler/icons'
 
 import './index.css'
 
@@ -66,18 +66,30 @@ const ProfileSection = ({ username, handleLogout }) => {
 
     return (
         <>
-            <ButtonBase ref={anchorRef} sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+            <ButtonBase
+                ref={anchorRef}
+                sx={{
+                    // borderRadius: "12px",
+                    borderRadius: '0px',
+                    overflow: 'hidden'
+                }}
+            >
                 <Avatar
-                    variant='rounded'
+                    // variant="rounded"
+                    variant='square'
                     sx={{
                         ...theme.typography.commonAvatar,
                         ...theme.typography.mediumAvatar,
                         transition: 'all .2s ease-in-out',
-                        background: theme.palette.secondary.light,
-                        color: theme.palette.secondary.dark,
+                        // background: theme.palette.secondary.light,
+                        // color: theme.palette.secondary.dark,
+                        background: '#E19379',
+                        color: '#ffffff',
                         '&:hover': {
-                            background: theme.palette.secondary.dark,
-                            color: theme.palette.secondary.light
+                            // background: theme.palette.secondary.dark,
+                            // color: theme.palette.secondary.light,
+                            background: '#df6a43'
+                            // color: "#ffffff"
                         }
                     }}
                     onClick={handleToggle}
@@ -116,8 +128,14 @@ const ProfileSection = ({ username, handleLogout }) => {
                                             </Typography>
                                         </Box>
                                     )}
-                                    <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                                        <Box sx={{ p: 2 }}>
+                                    <PerfectScrollbar
+                                        style={{
+                                            height: '100%',
+                                            maxHeight: 'calc(100vh - 250px)',
+                                            overflowX: 'hidden'
+                                        }}
+                                    >
+                                        <Box sx={{ p: 0 }}>
                                             <Divider />
                                             <List
                                                 component='nav'
@@ -135,27 +153,32 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                     }
                                                 }}
                                             >
-                                                <ListItemButton
-                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                    onClick={() => {
-                                                        setOpen(false)
-                                                        setAboutDialogOpen(true)
-                                                    }}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconInfoCircle stroke={1.5} size='1.3rem' />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant='body2'>About Flowise</Typography>} />
-                                                </ListItemButton>
-                                                {localStorage.getItem('username') && localStorage.getItem('password') && (
+                                                {username ? (
                                                     <ListItemButton
-                                                        sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                        sx={{
+                                                            borderRadius: `${customization.borderRadius}px`,
+                                                            '&:hover p': {
+                                                                color: customization.isDarkMode ? '#fff !important' : '#fff !important'
+                                                            }
+                                                        }}
                                                         onClick={handleLogout}
                                                     >
                                                         <ListItemIcon>
                                                             <IconLogout stroke={1.5} size='1.3rem' />
                                                         </ListItemIcon>
                                                         <ListItemText primary={<Typography variant='body2'>Logout</Typography>} />
+                                                    </ListItemButton>
+                                                ) : (
+                                                    <ListItemButton
+                                                        sx={{
+                                                            borderRadius: `${customization.borderRadius}px`
+                                                        }}
+                                                        onClick={handleLogout}
+                                                    >
+                                                        <ListItemIcon>
+                                                            <IconLogin stroke={1.5} size='1.3rem' />
+                                                        </ListItemIcon>
+                                                        <ListItemText primary={<Typography variant='body2'>Login</Typography>} />
                                                     </ListItemButton>
                                                 )}
                                             </List>
